@@ -7,7 +7,7 @@ export default function Navigation() {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/search">Search</Link>
+        <Link to="/library">Library</Link>
       </li>
       <li>
         <Link to="/favorites">Favorites</Link>

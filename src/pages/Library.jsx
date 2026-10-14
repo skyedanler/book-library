@@ -1,9 +1,9 @@
-function Library() {
+function Library({ books }) {
   return (
-    <div>
-      <h1>My Book Library</h1>
-      <p>Welcome to my personal book collection!</p>
-    </div>
+    <>
+      <h1>Library</h1>
+      <ul className="book-list"></ul>
+    </>
   );
 }
 
