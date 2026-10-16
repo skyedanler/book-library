@@ -1,4 +1,4 @@
-import { useParams, useLocation } from "react-router";
+import { useParams, useLocation, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 
 function ItemDetails({ books, setBooks }) {
@@ -7,8 +7,8 @@ function ItemDetails({ books, setBooks }) {
 
   const author = location.state?.author;
   const [book, setBook] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [readingStatus, setReadingStatus] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getBookDetails = async () => {
@@ -31,17 +31,13 @@ function ItemDetails({ books, setBooks }) {
     getBookDetails();
   }, [id]);
 
-  if (!book) {
-    return <p>Loading book...</p>;
-  }
+  const alreadySaved = books.some((savedBook) => savedBook.id === book.key);
 
   const handleFavorite = () => {
-    const alreadySaved = books.some((savedBook) => savedBook.id === book.key);
-
     if (alreadySaved) {
       setBooks((prev) =>
         prev.map((book) => {
-          if (book.id === book.key) {
+          if (savedBook.id === book.key) {
             return {
               ...book,
               isFavorite: !book.isFavorite,
@@ -66,8 +62,42 @@ function ItemDetails({ books, setBooks }) {
     }
   };
 
+  const handleReadingStatus = (status) => {
+    if (alreadySaved) {
+      setBooks((prev) =>
+        prev.map((book) => {
+          if (savedBook.id === book.key) {
+            return {
+              ...book,
+              readingStatus: status,
+            };
+          } else {
+            return book;
+          }
+        }),
+      );
+    } else {
+      setBooks((prev) => [
+        ...prev,
+        {
+          id: book.key,
+          title: book.title,
+          author: author?.join(", ") ?? "Unknown Author",
+          cover_i: book.covers[0],
+          isFavorite: false,
+          readingStatus: status,
+        },
+      ]);
+    }
+  };
+
+  const handleDeletion = () => {
+    setBooks((prev) => prev.filter((savedBook) => savedBook.id !== book.key));
+  };
+
   return (
     <>
+      <button onClick={() => navigate(-1)}>Go Back</button>
       <img
         src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`}
         alt={book.title}
@@ -76,17 +106,27 @@ function ItemDetails({ books, setBooks }) {
       <h2>{author?.join(", ") ?? "Unknown Author"}</h2>
       <p>{book.description.value}</p>
       <div className="save-options">
-        <label for="reading-status">Reading Status</label>
-        <select name="reading-status" id="reading-status">
+        <label htmlFor="reading-status">Reading Status</label>
+        <select
+          name="reading-status"
+          id="reading-status"
+          value={savedBook ? savedBook.readingStatus : "not started"}
+          onChange={(event) => handleReadingStatus(event.target.value)}
+        >
           <option value="want-to-read">Want to Read</option>
           <option value="reading">Reading</option>
           <option value="completed">Completed</option>
-          <option value="not started">Not Started</option>
         </select>
 
         <button className="favorite" onClick={handleFavorite}>
           Favorite
         </button>
+
+        {alreadySaved && (
+          <button className="delete" onClick={handleDeletion}>
+            Remove from Library
+          </button>
+        )}
       </div>
     </>
   );

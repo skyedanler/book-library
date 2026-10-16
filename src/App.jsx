@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router";
-import { useState } from "react";
 import "./App.css";
 import Library from "./pages/Library";
 import Search from "./pages/Search";
@@ -7,9 +6,10 @@ import ItemDetails from "./pages/ItemDetails";
 import Favorites from "./pages/Favorites";
 import NotFoundPage from "./pages/NotFoundPage";
 import Navigation from "./components/Navigation";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useLocalStorage("books", []);
 
   return (
     <>

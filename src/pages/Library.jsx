@@ -1,9 +1,14 @@
+import LibraryItem from "./LibraryItem";
+
 function Library({ books }) {
   return (
-    <>
-      <h1>Library</h1>
-      <ul className="book-list"></ul>
-    </>
+    <div>
+      <h1>My Library</h1>
+
+      {books.map((book) => (
+        <LibraryItem key={book.id} book={book} />
+      ))}
+    </div>
   );
 }
 

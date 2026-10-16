@@ -1,4 +1,14 @@
 export default function LibraryItem({ book }) {
+  let displayAuthor;
+
+  if (book.author !== undefined && book.author !== null) {
+    displayAuthor = book.author;
+  } else if (book.author_name !== undefined && book.author_name !== null) {
+    displayAuthor = book.author_name.join(", ");
+  } else {
+    displayAuthor = "Unknown Author";
+  }
+
   return (
     <>
       <img
@@ -7,9 +17,7 @@ export default function LibraryItem({ book }) {
       />
       <div className="book-text">
         <h2>{book.title}</h2>
-        <h3>
-          {book.author_name ? book.author_name.join(", ") : "Unknown Author"}
-        </h3>
+        <h3>{displayAuthor}</h3>
       </div>
     </>
   );
