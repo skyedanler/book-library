@@ -6,8 +6,7 @@ function Favorites({ books }) {
   return (
     <div>
       <h1>Favorites</h1>
-      <p>These are your favorite books.</p>
-      <ul>
+      <ul className="books">
         {favoriteBooks.map((book) => {
           <LibraryItem book={book} />;
         })}

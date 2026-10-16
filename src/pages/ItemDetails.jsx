@@ -40,7 +40,7 @@ function ItemDetails({ books, setBooks }) {
   const handleFavorite = () => {
     if (alreadySaved) {
       setBooks((prev) =>
-        prev.map((savedBook) => {
+        prev.map((book) => {
           if (savedBook.id === book.key) {
             return {
               ...book,
@@ -69,7 +69,7 @@ function ItemDetails({ books, setBooks }) {
   const handleReadingStatus = (status) => {
     if (alreadySaved) {
       setBooks((prev) =>
-        prev.map((savedBook) => {
+        prev.map((book) => {
           if (savedBook.id === book.key) {
             return {
               ...book,

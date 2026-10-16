@@ -10,7 +10,7 @@ export default function LibraryItem({ book }) {
   }
 
   return (
-    <>
+    <div className="book-card">
       <img
         src={`https://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`}
         alt={book.title}
@@ -18,7 +18,8 @@ export default function LibraryItem({ book }) {
       <div className="book-text">
         <h2>{book.title}</h2>
         <h3>{displayAuthor}</h3>
+        <p>Status: {book.readingStatus ?? "want-to-read"}</p>
       </div>
-    </>
+    </div>
   );
 }

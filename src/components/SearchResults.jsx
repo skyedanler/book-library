@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 function SearchResults({ books }) {
   return (
-    <ul>
+    <ul className="books">
       {books.map((book) => (
         <li key={book.key}>
           <Link

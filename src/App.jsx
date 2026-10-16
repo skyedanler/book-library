@@ -16,7 +16,10 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Search />} />
-        <Route path="/library" element={<Library books={books} />} />
+        <Route
+          path="/library"
+          element={<Library books={books} setBooks={setBooks} />}
+        />
         <Route path="/favorites" element={<Favorites books={books} />} />
         <Route
           path="/books/:id"

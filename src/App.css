@@ -1,0 +1,85 @@
+/*Baseline styling*/
+:root {
+  --offwhite: #F6EFE9; /*offwhite*/
+  --dark-purple: #877978; /*dark purple*/
+  --dark-orange: #C38A77;
+  --light-orange: #DDBAA7;
+  --medium-purple: #C2B5BD;
+  --light-purple: #DBCFD3;
+}
+
+body {
+  background: var(--offwhite);
+  color: var(--dark-purple);
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+}
+
+button {
+  background: var(--light-purple);
+  padding: 5px;
+  box-shadow: 
+  inset 0 5px 10px var(--medium-purple),
+    inset 0 -5px 10px var(--medium-purple),
+    2px 5px 10px var(--dark-purple);
+  color: var(--dark-purple)
+}
+
+button:hover {
+  opacity: 75%;
+  box-shadow: none;
+}
+
+/*Navigation*/
+nav ul {
+  display: flex;
+  list-style: none;
+}
+.nav-link {
+  text-decoration: none;
+}
+Link:hover {
+  opacity: 75%;
+}
+
+/*Homepage - Search Section*/
+.search-section {
+  padding: 15px;
+  border: 1px solid var(--dark-orange); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-options {
+  display: flex;
+  flex-direction: column;
+}
+
+/*Library*/
+.filtering, .sorting {
+  display: flex;
+  width: 50%;
+}
+
+.filter-buttons, .sort-buttons {
+  justify-content: space-evenly;
+}
+
+.books {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*Book Card*/
+.book-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+/*404 Page*/

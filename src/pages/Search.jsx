@@ -55,38 +55,40 @@ function Search() {
             words.
           </em>
         </p>
-        <label htmlFor="title-search">
-          Search By Title:
-          <input
-            type="text"
-            id="title-search"
-            name="title-search"
-            value={titleInput}
-            onChange={(event) => setTitleInput(event.target.value)}
-          />
-        </label>
+        <div className="search-options">
+          <label htmlFor="title-search">
+            Search By Title:
+            <input
+              type="text"
+              id="title-search"
+              name="title-search"
+              value={titleInput}
+              onChange={(event) => setTitleInput(event.target.value)}
+            />
+          </label>
 
-        <label htmlFor="author-search">
-          Search By Author:
-          <input
-            type="text"
-            id="author-search"
-            name="author-search"
-            value={authorInput}
-            onChange={(event) => setAuthorInput(event.target.value)}
-          />
-        </label>
+          <label htmlFor="author-search">
+            Search By Author:
+            <input
+              type="text"
+              id="author-search"
+              name="author-search"
+              value={authorInput}
+              onChange={(event) => setAuthorInput(event.target.value)}
+            />
+          </label>
 
-        <label htmlFor="subject-search">
-          Search By Subject:
-          <input
-            type="text"
-            id="subject-search"
-            name="subject-search"
-            value={subjectInput}
-            onChange={(event) => setSubjectInput(event.target.value)}
-          />
-        </label>
+          <label htmlFor="subject-search">
+            Search By Subject:
+            <input
+              type="text"
+              id="subject-search"
+              name="subject-search"
+              value={subjectInput}
+              onChange={(event) => setSubjectInput(event.target.value)}
+            />
+          </label>
+        </div>
 
         <button onClick={searchBooks}>Search</button>
       </div>
