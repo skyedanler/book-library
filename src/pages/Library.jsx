@@ -1,4 +1,4 @@
-import LibraryItem from "./LibraryItem";
+import LibraryItem from "../components/LibraryItem";
 
 function Library({ books }) {
   return (

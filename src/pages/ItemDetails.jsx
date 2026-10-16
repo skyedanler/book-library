@@ -31,12 +31,16 @@ function ItemDetails({ books, setBooks }) {
     getBookDetails();
   }, [id]);
 
+  if (!book) {
+    return <p>Loading book...</p>;
+  }
+
   const alreadySaved = books.some((savedBook) => savedBook.id === book.key);
 
   const handleFavorite = () => {
     if (alreadySaved) {
       setBooks((prev) =>
-        prev.map((book) => {
+        prev.map((savedBook) => {
           if (savedBook.id === book.key) {
             return {
               ...book,
@@ -65,7 +69,7 @@ function ItemDetails({ books, setBooks }) {
   const handleReadingStatus = (status) => {
     if (alreadySaved) {
       setBooks((prev) =>
-        prev.map((book) => {
+        prev.map((savedBook) => {
           if (savedBook.id === book.key) {
             return {
               ...book,
@@ -110,7 +114,7 @@ function ItemDetails({ books, setBooks }) {
         <select
           name="reading-status"
           id="reading-status"
-          value={savedBook ? savedBook.readingStatus : "not started"}
+          value={book ? book.readingStatus : "not started"}
           onChange={(event) => handleReadingStatus(event.target.value)}
         >
           <option value="want-to-read">Want to Read</option>
