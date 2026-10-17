@@ -5,12 +5,15 @@ function Search() {
   const [titleInput, setTitleInput] = useState("");
   const [authorInput, setAuthorInput] = useState("");
   const [subjectInput, setSubjectInput] = useState("");
+  const [error, setError] = useState("");
 
   const [APIResults, setAPIResults] = useState([]);
 
   let baseUrl = "https://openlibrary.org/search.json";
 
   const searchBooks = async () => {
+    setError("");
+
     try {
       const params = new URLSearchParams();
 
@@ -29,7 +32,8 @@ function Search() {
       const url = `${baseUrl}?${params.toString()}`;
 
       if (!params.toString()) {
-        alert("Please enter a title, author, and/or subject.");
+        setError("Please enter a title, author, and/or subject.");
+        setAPIResults([]);
         return;
       }
 
@@ -38,10 +42,20 @@ function Search() {
       if (!response.ok) {
         throw new Error("Failed to fetch books");
       }
+
       const data = await response.json();
+
+      if (data.docs.length === 0) {
+        setError("No books found. Try a different search!");
+        setAPIResults([]);
+        return;
+      }
+
       setAPIResults(data.docs);
     } catch (error) {
       console.log(error);
+      setError("Something went wrong while searching. Please try again.");
+      setAPIResults([]);
     }
   };
 
@@ -91,6 +105,7 @@ function Search() {
         </div>
 
         <button onClick={searchBooks}>Search</button>
+        {error && <p className="error-message">{error}</p>}
       </div>
       <SearchResults books={APIResults} />
     </>

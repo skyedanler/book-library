@@ -69,6 +69,13 @@ li:hover {
   gap: 5px;
 }
 
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
 /*Library*/
 .filtering,
 .sorting {
@@ -153,6 +160,17 @@ li:hover {
 }
 
 /*404 Page*/
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.not-found-page img {
+    height: 50vh;
+    width: auto;
+    margin: 0 auto;
+}
 
 @media (width >= 768px) and (width <= 1048px) {
   .books {
