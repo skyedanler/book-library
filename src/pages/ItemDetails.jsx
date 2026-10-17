@@ -101,37 +101,46 @@ function ItemDetails({ books, setBooks }) {
 
   return (
     <>
-      <button onClick={() => navigate(-1)}>Go Back</button>
-      <img
-        src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`}
-        alt={book.title}
-      />
-      <h1>{book.title}</h1>
-      <h2>{author?.join(", ") ?? "Unknown Author"}</h2>
-      <p>{book.description.value}</p>
-      <div className="save-options">
-        <label htmlFor="reading-status">Reading Status</label>
-        <select
-          name="reading-status"
-          id="reading-status"
-          value={book ? book.readingStatus : "not started"}
-          onChange={(event) => handleReadingStatus(event.target.value)}
-        >
-          <option value="want-to-read">Want to Read</option>
-          <option value="reading">Reading</option>
-          <option value="completed">Completed</option>
-        </select>
+      <button className="prev" onClick={() => navigate(-1)}>
+        Go Back
+      </button>
+      <section className="item-details">
+        <img
+          src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`}
+          alt={book.title}
+        />
+        <h2>{book.title}</h2>
+        <h3>{author?.join(", ") ?? "Unknown Author"}</h3>
+        {book.description?.value && <p>{book.description.value}</p>}
+        <div className="save-options">
+          <label htmlFor="reading-status">Reading Status</label>
+          <select
+            name="reading-status"
+            id="reading-status"
+            value={book ? book.readingStatus : ""}
+            onChange={(event) => handleReadingStatus(event.target.value)}
+          >
+            <option value="" disabled>
+              Choose One
+            </option>
+            <option value="want-to-read">Want to Read</option>
+            <option value="reading">Reading</option>
+            <option value="completed">Completed</option>
+          </select>
 
-        <button className="favorite" onClick={handleFavorite}>
-          Favorite
-        </button>
+          <div className="buttons">
+            <button className="favorite" onClick={handleFavorite}>
+              Favorite
+            </button>
 
-        {alreadySaved && (
-          <button className="delete" onClick={handleDeletion}>
-            Remove from Library
-          </button>
-        )}
-      </div>
+            {alreadySaved && (
+              <button className="delete" onClick={handleDeletion}>
+                Remove from Library
+              </button>
+            )}
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from "react-router";
 import LibraryItem from '../components/LibraryItem';
 
 function Library({ books }) {
@@ -66,7 +67,14 @@ function Library({ books }) {
 
       <div className="books">
         {displayedBooks.map((book) => (
-          <LibraryItem key={book.id} book={book} />
+          <li key={book.id}>
+            <Link
+              to={`/books/${book.id.split("/").pop()}`}
+              state={{ author: [book.author] }}
+            >
+              <LibraryItem book={book} />
+            </Link>
+          </li>
         ))}
       </div>
     </div>

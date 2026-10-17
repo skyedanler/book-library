@@ -51,7 +51,7 @@ function Search() {
       <div className="search-section">
         <p>
           <em>
-            Search by book title or author. For best results, use complete
+            Search by book, title, and/or author. For best results, use complete
             words.
           </em>
         </p>
