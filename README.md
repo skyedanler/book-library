@@ -1,16 +1,122 @@
-# React + Vite
+# Personal Book Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that allows users to search for books and save them to their library or favorite them.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<a href="book-library-danler.netlify.app">book-library-danler.netlify.app</a>
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Search for books by title, author, and/or subject using an API.
+- View individual book details, including titles, authors, covers, and descriptions when available.
+- Add books to your library.
+- Favorite and unfavorite books.
+- Keep track of reading progress with three statuses: Want to Read, Reading, and Completed.
+- Filter books by reading status.
+- Sort books by title, author, or reading status.
+- Remove books from the library.
+- Save books using localStorage.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- JavaScript
+- HTML
+- CSS
+
+## Setup
+
+To run this project locally:
+
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:skyedanler/book-library.git
+   ```
+
+2. Navigate into the project folder:
+
+   ```bash
+   cd book-library
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local URL provided in the terminal.
+
+## API Documentation
+
+This project uses the free Open Library API - "https://openlibrary.org/search.json"
+
+Searches can include the following query parameters:
+
+- Search by book title. (title=${title})
+- Search by author.    (author=${author})
+- Search by subject.  (subject=${subject})
+
+URLSearchParams formatted searches into usable strings for URL
+
+
+### Endpoints
+
+https://openlibrary.org/works/{workId}.json --> gives more information about a book using the id given on initial search to search book further for item details.
+
+https://covers.openlibrary.org/b/id/{coverId}-M.jpg to search the cover by ID given in initial search results and then display on subsequent library item.
+
+### API Key and Rate
+
+**API Key** No API key is required for the endpoints used in this project.
+
+**Rate Limits:** Their documentation describes a default limit of 1 request per second.
+
+
+## Project Structure
+
+The project is organized into separate pages, reusable components, and a custom hook.
+
+```text
+book-library/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── LibraryItem.jsx
+│   │   ├── Navigation.jsx
+│   │   └── SearchResults.jsx
+│   ├── pages/
+│   │   ├── Favorites.jsx
+│   │   ├── ItemDetails.jsx
+│   │   ├── Library.jsx
+│   │   ├── NotFoundPage.jsx
+│   │   └── Search.jsx
+│   ├── hooks/
+│   │   └── useLocalStorage.js
+│   ├── App.jsx
+│   ├── App.css
+└── └── main.jsx
+```
+
+
+## Future Enhancements
+
+- Allowing users to rate books.
+- Creating custom reading lists.
+
+## Author
+
+Skye Danler
+
+
+## License
+
+No license.
