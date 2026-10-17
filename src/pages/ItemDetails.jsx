@@ -35,19 +35,19 @@ function ItemDetails({ books, setBooks }) {
     return <p>Loading book...</p>;
   }
 
-  const alreadySaved = books.some((savedBook) => savedBook.id === book.key);
+  const alreadySaved = books.find((savedBook) => savedBook.id === book.key);
 
   const handleFavorite = () => {
     if (alreadySaved) {
       setBooks((prev) =>
-        prev.map((book) => {
+        prev.map((savedBook) => {
           if (savedBook.id === book.key) {
             return {
-              ...book,
-              isFavorite: !book.isFavorite,
+              ...savedBook,
+              isFavorite: !savedBook.isFavorite,
             };
           } else {
-            return book;
+            return savedBook;
           }
         }),
       );
@@ -69,14 +69,14 @@ function ItemDetails({ books, setBooks }) {
   const handleReadingStatus = (status) => {
     if (alreadySaved) {
       setBooks((prev) =>
-        prev.map((book) => {
+        prev.map((savedBook) => {
           if (savedBook.id === book.key) {
             return {
-              ...book,
+              ...savedBook,
               readingStatus: status,
             };
           } else {
-            return book;
+            return savedBook;
           }
         }),
       );
@@ -117,7 +117,7 @@ function ItemDetails({ books, setBooks }) {
           <select
             name="reading-status"
             id="reading-status"
-            value={book ? book.readingStatus : ""}
+            value={alreadySaved?.readingStatus ?? ""}
             onChange={(event) => handleReadingStatus(event.target.value)}
           >
             <option value="" disabled>

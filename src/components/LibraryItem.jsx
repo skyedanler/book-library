@@ -18,6 +18,7 @@ export default function LibraryItem({ book }) {
       <div className="book-text">
         <h2>{book.title}</h2>
         <h3>{displayAuthor}</h3>
+        {book.readingStatus && <p>Status: {book.readingStatus}</p>}
       </div>
     </div>
   );
